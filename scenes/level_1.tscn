@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://uoxqxlnund4b"]
+[gd_scene load_steps=5 format=3 uid="uid://uoxqxlnund4b"]
 
 [ext_resource type="PackedScene" uid="uid://31daujt3lhts" path="res://scenes/person.tscn" id="1_014kd"]
 [ext_resource type="Script" uid="uid://cmhtdk12wkdnl" path="res://scenes/level_1.gd" id="1_bswci"]
 [ext_resource type="Texture2D" uid="uid://cyff6a50y5yhy" path="res://icon.svg" id="2_rus8k"]
+[ext_resource type="PackedScene" uid="uid://bx4o43qth1rfd" path="res://scenes/fire.tscn" id="4_5xbjy"]
 
 [node name="Level1" type="Node2D" node_paths=PackedStringArray("collision_node")]
 script = ExtResource("1_bswci")
@@ -17,10 +18,18 @@ position = Vector2(206, 234)
 [node name="StaticBody2D" type="StaticBody2D" parent="Collsion"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collsion/StaticBody2D"]
-polygon = PackedVector2Array(42, 490, 473, 347, 870, 487, 577, 607)
+polygon = PackedVector2Array(-20, 660, -20, -20, 40, -20, 40, 600, 1100, 600, 1100, 40, 40, 40, 40, -20, 1100, -20, 1160, -20, 1160, 660)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Collsion"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collsion/StaticBody2D2"]
-position = Vector2(262, -287)
-polygon = PackedVector2Array(42, 490, 473, 347, 870, 487, 457, 423)
+polygon = PackedVector2Array(160, 480, 740, 480, 740, 420, 360, 420, 360, 380, 320, 380, 320, 320, 160, 320)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Collsion"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collsion/StaticBody2D3"]
+position = Vector2(60, 20)
+polygon = PackedVector2Array(580, 240, 980, 240, 980, 100, 580, 100, 580, 160, 540, 160, 540, 200, 360, 200, 320, 240, 360, 240)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_5xbjy")]
+position = Vector2(528, 283)
