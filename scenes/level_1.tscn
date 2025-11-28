@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://uoxqxlnund4b"]
+
+[ext_resource type="PackedScene" uid="uid://31daujt3lhts" path="res://scenes/person.tscn" id="1_014kd"]
+[ext_resource type="Script" uid="uid://cmhtdk12wkdnl" path="res://scenes/level_1.gd" id="1_bswci"]
+[ext_resource type="Texture2D" uid="uid://cyff6a50y5yhy" path="res://icon.svg" id="2_rus8k"]
+
+[node name="Level1" type="Node2D" node_paths=PackedStringArray("collision_node")]
+script = ExtResource("1_bswci")
+collision_node = NodePath("Collsion")
+texture = ExtResource("2_rus8k")
+
+[node name="Person" parent="." instance=ExtResource("1_014kd")]
+position = Vector2(206, 234)
+
+[node name="Collsion" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Collsion"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collsion/StaticBody2D"]
+polygon = PackedVector2Array(42, 490, 473, 347, 870, 487, 577, 607)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Collsion"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collsion/StaticBody2D2"]
+position = Vector2(262, -287)
+polygon = PackedVector2Array(42, 490, 473, 347, 870, 487, 457, 423)
