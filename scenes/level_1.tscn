@@ -1,11 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://uoxqxlnund4b"]
+[gd_scene load_steps=8 format=3 uid="uid://uoxqxlnund4b"]
 
 [ext_resource type="PackedScene" uid="uid://31daujt3lhts" path="res://scenes/person.tscn" id="1_014kd"]
 [ext_resource type="Script" uid="uid://cmhtdk12wkdnl" path="res://scenes/level_1.gd" id="1_bswci"]
 [ext_resource type="Texture2D" uid="uid://cyff6a50y5yhy" path="res://icon.svg" id="2_rus8k"]
 [ext_resource type="PackedScene" uid="uid://bx4o43qth1rfd" path="res://scenes/fire.tscn" id="4_5xbjy"]
-[ext_resource type="PackedScene" uid="uid://7tkupanahbib" path="res://scenes/weapon_area.tscn" id="5_4nkto"]
-[ext_resource type="PackedScene" uid="uid://ch05j52xcwhdh" path="res://scenes/tree.tscn" id="6_fcfvj"]
+[ext_resource type="PackedScene" uid="uid://hks6mc1xiqi1" path="res://scenes/tree_spawner.tscn" id="6_fcfvj"]
+[ext_resource type="PackedScene" uid="uid://b7oopn7xguivr" path="res://scenes/tree_2.tscn" id="6_pa8r4"]
+
+[sub_resource type="Curve2D" id="Curve2D_4nkto"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 420, 420, 0, 0, 0, 0, 660, 420)
+}
+point_count = 2
 
 [node name="Level1" type="Node2D" node_paths=PackedStringArray("collision_node")]
 script = ExtResource("1_bswci")
@@ -36,7 +42,10 @@ polygon = PackedVector2Array(580, 240, 980, 240, 980, 100, 580, 100, 580, 160, 5
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_5xbjy")]
 position = Vector2(600, 340)
 
-[node name="WeaponArea" parent="." instance=ExtResource("5_4nkto")]
+[node name="TreeSpawner" parent="." instance=ExtResource("6_fcfvj")]
 
-[node name="Tree" parent="." instance=ExtResource("6_fcfvj")]
-position = Vector2(519.839, 211.285)
+[node name="TreeSpawner2" parent="." instance=ExtResource("6_fcfvj")]
+curve = SubResource("Curve2D_4nkto")
+
+[node name="Tree2" parent="." instance=ExtResource("6_pa8r4")]
+position = Vector2(440, 215)

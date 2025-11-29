@@ -1,7 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7oopn7xguivr"]
+[gd_scene load_steps=6 format=3 uid="uid://b7oopn7xguivr"]
 
 [ext_resource type="PackedScene" uid="uid://dl7ed1erl7kmp" path="res://scenes/hurt_area.tscn" id="1_wmt7p"]
 [ext_resource type="Script" uid="uid://e143hv8k1u0b" path="res://scripts/tree.gd" id="2_rokvb"]
+[ext_resource type="PackedScene" uid="uid://mjqwrsmls811" path="res://scenes/health_component.tscn" id="3_rokvb"]
+[ext_resource type="Texture2D" uid="uid://cyff6a50y5yhy" path="res://icon.svg" id="3_w7snq"]
 
-[node name="Tree2" instance=ExtResource("1_wmt7p")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yrm5o"]
+size = Vector2(40, 110)
+
+[node name="Tree2" node_paths=PackedStringArray("health_component") groups=["tree"] instance=ExtResource("1_wmt7p")]
+collision_layer = 8
 script = ExtResource("2_rokvb")
+health_component = NodePath("HealthComponent")
+hurt_only_on_pass = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+position = Vector2(0, -40)
+scale = Vector2(0.5, 1)
+texture = ExtResource("3_w7snq")
+
+[node name="HealthComponent" parent="." index="2" instance=ExtResource("3_rokvb")]
+max_health = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, -45)
+shape = SubResource("RectangleShape2D_yrm5o")
+
+[connection signal="hurt" from="." to="." method="_on_hurt"]
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

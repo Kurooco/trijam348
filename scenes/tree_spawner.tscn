@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://hks6mc1xiqi1"]
+
+[ext_resource type="Script" uid="uid://btv11lxq53bog" path="res://scenes/tree_spawner.gd" id="1_obko8"]
+
+[sub_resource type="Curve2D" id="Curve2D_1nrl8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 700, 120, 0, 0, 0, 0, 940, 120)
+}
+point_count = 2
+
+[node name="TreeSpawner" type="Path2D" groups=["tree_spawner"]]
+curve = SubResource("Curve2D_1nrl8")
+script = ExtResource("1_obko8")
+
+[node name="Point" type="PathFollow2D" parent="."]
+position = Vector2(700, 120)

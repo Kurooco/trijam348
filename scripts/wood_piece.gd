@@ -8,7 +8,7 @@ var move_ratio = 0
 func _ready():
 	fire = get_tree().get_nodes_in_group("fire")[0]
 	var move_tween = create_tween()
-	move_tween.tween_property(self, "position", position+Vector2(randf_range(-100, 100), randf_range(-100, 100)), 1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	move_tween.tween_property(self, "position", position+Vector2(randf_range(-100, 100), randf_range(-100, 100)), .3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	move_tween.finished.connect(start_move)
 
 func start_move():

@@ -11,7 +11,6 @@ func _ready():
 
 func change_health(amount):
 	health += amount
-	print_debug(health)
 	if(health <= 0):
 		killed.emit()
 		health = 0

@@ -8,11 +8,13 @@ signal invicibility_ended
 signal hurt(amount)
 
 var invincible = false
+var disabled = false
 @onready var invincible_timer = $InvincibleTimer
 	
 
 func hit(amount: float):
-	if(!invincible):
+	if(!invincible && !disabled):
+		print_debug(name)
 		hurt.emit(amount)
 		health_component.change_health(-amount)
 		if($InvincibleTimer.wait_time > 0):

@@ -2,6 +2,9 @@ extends "res://scripts/hurt_area.gd"
 
 
 func _on_health_component_killed():
+	hide()
+	disabled = true
+	await get_tree().create_timer(1).timeout
 	queue_free()
 
 
