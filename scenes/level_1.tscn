@@ -5,9 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cyff6a50y5yhy" path="res://icon.svg" id="2_rus8k"]
 [ext_resource type="PackedScene" uid="uid://bx4o43qth1rfd" path="res://scenes/fire.tscn" id="4_5xbjy"]
 [ext_resource type="PackedScene" uid="uid://7tkupanahbib" path="res://scenes/weapon_area.tscn" id="5_4nkto"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nkto"]
-size = Vector2(150, 110)
+[ext_resource type="PackedScene" uid="uid://ch05j52xcwhdh" path="res://scenes/tree.tscn" id="6_fcfvj"]
 
 [node name="Level1" type="Node2D" node_paths=PackedStringArray("collision_node")]
 script = ExtResource("1_bswci")
@@ -40,6 +38,5 @@ position = Vector2(600, 340)
 
 [node name="WeaponArea" parent="." instance=ExtResource("5_4nkto")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponArea"]
-position = Vector2(500, 180)
-shape = SubResource("RectangleShape2D_4nkto")
+[node name="Tree" parent="." instance=ExtResource("6_fcfvj")]
+position = Vector2(519.839, 211.285)

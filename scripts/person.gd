@@ -23,3 +23,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	
+	$CanvasLayer/HealthBar.value = ($HealthComponent.health/$HealthComponent.max_health)*100
+
+	$RotatePivot.rotate(delta*5)

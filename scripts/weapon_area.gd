@@ -15,7 +15,8 @@ func _process(delta):
 func _on_area_entered(area):
 	if(area is HurtArea):
 		area.hit(damage)
-		area.invicibility_ended.connect(hurt_again.bind(area))
+		if(!area.hurt_only_on_pass):
+			area.invicibility_ended.connect(hurt_again.bind(area))
 
 func hurt_again(area):
 	if(is_instance_valid(area)):

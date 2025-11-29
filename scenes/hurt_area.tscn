@@ -11,3 +11,4 @@ script = ExtResource("1_5yssl")
 one_shot = true
 
 [connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]
+[connection signal="tree_entered" from="InvincibleTimer" to="." method="_on_invincible_timer_tree_entered"]

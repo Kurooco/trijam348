@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ch05j52xcwhdh"]
+
+[ext_resource type="Script" uid="uid://dja8e3j4r8pxk" path="res://scenes/tree.gd" id="1_viusy"]
+[ext_resource type="Texture2D" uid="uid://cyff6a50y5yhy" path="res://icon.svg" id="2_viusy"]
+[ext_resource type="PackedScene" uid="uid://mjqwrsmls811" path="res://scenes/health_component.tscn" id="3_viusy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qd6xs"]
+size = Vector2(20, 67)
+
+[node name="Tree" type="Area2D" node_paths=PackedStringArray("health_component")]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_viusy")
+health_component = NodePath("HealthComponent")
+hurt_only_on_pass = true
+metadata/_custom_type_script = "uid://b26k4ger7g1hi"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -23.5)
+shape = SubResource("RectangleShape2D_qd6xs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.5, -25.5)
+scale = Vector2(0.304688, 0.601563)
+texture = ExtResource("2_viusy")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_viusy")]
+max_health = 5.0
+
+[node name="InvincibleTimer" type="Timer" parent="."]
+
+[connection signal="hurt" from="." to="." method="_on_hurt"]
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

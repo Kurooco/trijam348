@@ -1,6 +1,7 @@
 extends Node
 
 @export var max_health = 100.0
+@export var drain = 0.0
 var health
 
 signal killed
@@ -15,3 +16,6 @@ func change_health(amount):
 		killed.emit()
 		health = 0
 	health = min(max_health, health)
+
+func _process(delta):
+	health -= drain*delta

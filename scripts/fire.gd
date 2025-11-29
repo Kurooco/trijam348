@@ -10,7 +10,7 @@ var x_rebound_vel = 0
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta * 2
+		velocity += get_gravity() * delta * (4 if Input.is_action_pressed("down_f") else 2)
 		y_rebound_vel = velocity.y
 	elif(not Input.is_action_pressed("down_f")):
 		velocity.y = -abs(y_rebound_vel*.8)
@@ -36,3 +36,8 @@ func _physics_process(delta):
 		velocity.x = -x_rebound_vel*.9
 	
 	move_and_slide()
+
+	$CanvasLayer/HealthBar.value = ($HealthComponent.health/$HealthComponent.max_health)*100
+
+func heal(amount):
+	$HealthComponent.change_health(amount)

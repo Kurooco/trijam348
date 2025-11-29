@@ -1,12 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bx4o43qth1rfd"]
+[gd_scene load_steps=7 format=3 uid="uid://bx4o43qth1rfd"]
 
 [ext_resource type="Texture2D" uid="uid://cyff6a50y5yhy" path="res://icon.svg" id="1_52nqi"]
 [ext_resource type="Script" uid="uid://bh4tysvfqg84l" path="res://scripts/fire.gd" id="1_xqmqg"]
+[ext_resource type="PackedScene" uid="uid://7tkupanahbib" path="res://scenes/weapon_area.tscn" id="3_g5mbl"]
+[ext_resource type="PackedScene" uid="uid://mjqwrsmls811" path="res://scenes/health_component.tscn" id="4_rach5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqmqg"]
 size = Vector2(41, 41)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rach5"]
+size = Vector2(42, 41)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["fire"]]
+collision_layer = 0
 script = ExtResource("1_xqmqg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -17,3 +23,23 @@ shape = SubResource("RectangleShape2D_xqmqg")
 position = Vector2(-0.999996, 3.8147e-06)
 scale = Vector2(0.367188, 0.367188)
 texture = ExtResource("1_52nqi")
+
+[node name="WeaponArea" parent="." instance=ExtResource("3_g5mbl")]
+collision_mask = 6
+damage = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponArea"]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_rach5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 65.0
+offset_top = 589.0
+offset_right = 352.0
+offset_bottom = 616.0
+show_percentage = false
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_rach5")]
+drain = 5.0

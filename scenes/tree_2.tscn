@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7oopn7xguivr"]
+
+[ext_resource type="PackedScene" uid="uid://dl7ed1erl7kmp" path="res://scenes/hurt_area.tscn" id="1_wmt7p"]
+[ext_resource type="Script" uid="uid://e143hv8k1u0b" path="res://scripts/tree.gd" id="2_rokvb"]
+
+[node name="Tree2" instance=ExtResource("1_wmt7p")]
+script = ExtResource("2_rokvb")
