@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://31daujt3lhts"]
+[gd_scene load_steps=7 format=3 uid="uid://31daujt3lhts"]
 
 [ext_resource type="Script" uid="uid://dujd4s6s14307" path="res://scripts/person.gd" id="1_5dovg"]
 [ext_resource type="Texture2D" uid="uid://cyff6a50y5yhy" path="res://icon.svg" id="1_c62xm"]
+[ext_resource type="PackedScene" uid="uid://mjqwrsmls811" path="res://scenes/health_component.tscn" id="3_h4n5y"]
+[ext_resource type="PackedScene" uid="uid://dl7ed1erl7kmp" path="res://scenes/hurt_area.tscn" id="4_h4n5y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dovg"]
 size = Vector2(32, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8487m"]
 
 [node name="Person" type="CharacterBody2D"]
 script = ExtResource("1_5dovg")
@@ -17,3 +21,11 @@ shape = SubResource("RectangleShape2D_5dovg")
 position = Vector2(1, -1)
 scale = Vector2(0.28125, 0.28125)
 texture = ExtResource("1_c62xm")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_h4n5y")]
+
+[node name="HurtArea" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_h4n5y")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
+shape = SubResource("RectangleShape2D_8487m")

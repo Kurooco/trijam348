@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://7tkupanahbib"]
+
+[ext_resource type="Script" uid="uid://crsyerueox3q" path="res://scripts/weapon_area.gd" id="1_eld7u"]
+
+[node name="WeaponArea" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_eld7u")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

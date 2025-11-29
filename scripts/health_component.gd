@@ -1,0 +1,17 @@
+extends Node
+
+@export var max_health = 100.0
+var health
+
+signal killed
+
+func _ready():
+	health = max_health
+
+func change_health(amount):
+	health += amount
+	print_debug(health)
+	if(health <= 0):
+		killed.emit()
+		health = 0
+	health = min(max_health, health)

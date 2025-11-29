@@ -53,6 +53,13 @@ down_f={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="ground"
+2d_physics/layer_2="player_hurt"
+2d_physics/layer_3="enemy_hurt"
+2d_physics/layer_4="tree_hurt"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
