@@ -71,3 +71,4 @@ down_f={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.0430077, 0.0459764, 0.0994852, 1)

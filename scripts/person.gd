@@ -26,4 +26,4 @@ func _physics_process(delta):
 	
 	$CanvasLayer/HealthBar.value = ($HealthComponent.health/$HealthComponent.max_health)*100
 
-	$RotatePivot.rotate(delta*5)
+	$RotatePivot.rotate(delta*10)
