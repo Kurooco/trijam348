@@ -60,6 +60,7 @@ scale = Vector2(0.740625, 0.740625)
 texture = ExtResource("2_2jjoq")
 
 [node name="RotatePivot" type="Node2D" parent="."]
+scale = Vector2(0.7, 0.7)
 
 [node name="WeaponArea" parent="RotatePivot" instance=ExtResource("5_8487m")]
 collision_mask = 8
@@ -72,3 +73,5 @@ shape = SubResource("RectangleShape2D_pfaeq")
 position = Vector2(75, 10)
 rotation = 1.55834
 texture = ExtResource("7_2jjoq")
+
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

@@ -41,3 +41,7 @@ func _physics_process(delta):
 
 func heal(amount):
 	$HealthComponent.change_health(amount)
+
+
+func _on_health_component_killed():
+	hide()

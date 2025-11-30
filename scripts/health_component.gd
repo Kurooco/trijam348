@@ -17,4 +17,4 @@ func change_health(amount):
 	health = min(max_health, health)
 
 func _process(delta):
-	health -= drain*delta
+	change_health(-drain*delta)

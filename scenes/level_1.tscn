@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://uoxqxlnund4b"]
+[gd_scene load_steps=9 format=3 uid="uid://uoxqxlnund4b"]
 
 [ext_resource type="PackedScene" uid="uid://31daujt3lhts" path="res://scenes/person.tscn" id="1_014kd"]
 [ext_resource type="Script" uid="uid://cmhtdk12wkdnl" path="res://scenes/level_1.gd" id="1_bswci"]
@@ -10,6 +10,12 @@
 [sub_resource type="Curve2D" id="Curve2D_4nkto"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 420, 420, 0, 0, 0, 0, 660, 420)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_fcfvj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 560, 560, 0, 0, 0, 0, 740, 560)
 }
 point_count = 2
 
@@ -63,4 +69,55 @@ position = Vector2(100, 440)
 [node name="EnemyTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="LoseScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="LoseScreen"]
+offset_left = 260.0
+offset_top = 80.0
+offset_right = 834.0
+offset_bottom = 217.0
+theme_override_font_sizes/font_size = 100
+text = "GAME OVER"
+
+[node name="TryAgain" type="Button" parent="LoseScreen"]
+offset_left = 420.0
+offset_top = 220.0
+offset_right = 660.0
+offset_bottom = 300.0
+text = "Try again"
+
+[node name="WinScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="WinScreen"]
+offset_left = 240.0
+offset_top = 120.0
+offset_right = 868.0
+offset_bottom = 257.0
+theme_override_font_sizes/font_size = 100
+text = "YOU WON!!!!!"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Timer" type="Label" parent="CanvasLayer"]
+offset_right = 68.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "120"
+
+[node name="LevelTimer" type="Timer" parent="."]
+wait_time = 120.0
+autostart = true
+
+[node name="TreeSpawner3" parent="." instance=ExtResource("6_fcfvj")]
+curve = SubResource("Curve2D_fcfvj")
+
+[connection signal="killed" from="Person/HealthComponent" to="." method="_on_health_component_killed"]
+[connection signal="killed" from="CharacterBody2D/HealthComponent" to="." method="_on_fireball_killed"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
+[connection signal="pressed" from="LoseScreen/TryAgain" to="." method="_on_try_again_pressed"]
+[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
+
+[editable path="Person"]
+[editable path="CharacterBody2D"]
