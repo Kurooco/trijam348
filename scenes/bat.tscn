@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://ndvyk6cda3ug"]
+
+[ext_resource type="Script" uid="uid://ssh82wy6kosa" path="res://scenes/bat.gd" id="1_cnldk"]
+[ext_resource type="Texture2D" uid="uid://dt8t353q1sk84" path="res://art/bat.png" id="2_48wkk"]
+[ext_resource type="PackedScene" uid="uid://7tkupanahbib" path="res://scenes/weapon_area.tscn" id="3_48wkk"]
+[ext_resource type="PackedScene" uid="uid://dl7ed1erl7kmp" path="res://scenes/hurt_area.tscn" id="4_lv0ya"]
+[ext_resource type="PackedScene" uid="uid://mjqwrsmls811" path="res://scenes/health_component.tscn" id="5_5fn3r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnldk"]
+size = Vector2(40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ss3tx"]
+atlas = ExtResource("2_48wkk")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv0ya"]
+atlas = ExtResource("2_48wkk")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5fn3r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ss3tx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lv0ya")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ss3tx"]
+size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lv0ya"]
+size = Vector2(50, 50)
+
+[node name="Bat" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_cnldk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cnldk")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.68594, 1.68594)
+sprite_frames = SubResource("SpriteFrames_5fn3r")
+autoplay = "default"
+frame_progress = 0.84239
+
+[node name="WeaponArea" parent="." instance=ExtResource("3_48wkk")]
+damage = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponArea"]
+shape = SubResource("RectangleShape2D_ss3tx")
+
+[node name="HurtArea" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_lv0ya")]
+collision_layer = 4
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
+shape = SubResource("RectangleShape2D_lv0ya")
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_5fn3r")]
+max_health = 1.0
+
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

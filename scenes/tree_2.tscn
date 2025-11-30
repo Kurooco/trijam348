@@ -12,6 +12,7 @@ size = Vector2(40, 110)
 collision_layer = 8
 script = ExtResource("2_rokvb")
 health_component = NodePath("HealthComponent")
+always_hurt_on_pass = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="1"]
 scale = Vector2(1e-05, 1e-05)

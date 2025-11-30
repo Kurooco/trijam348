@@ -21,6 +21,7 @@ fire=""
 person=""
 tree_spawner=""
 tree=""
+enemy_spawner=""
 
 [input]
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://cb10l0lmw76os"]
 
-[ext_resource type="Texture2D" uid="uid://cyff6a50y5yhy" path="res://icon.svg" id="1_vjgaq"]
+[ext_resource type="Texture2D" uid="uid://xnbslt1nnh0d" path="res://art/wood.png" id="1_vjgaq"]
 [ext_resource type="Script" uid="uid://b0fd154cu48ji" path="res://scripts/wood_piece.gd" id="1_yeost"]
 
 [node name="WoodPiece" type="Sprite2D"]
-position = Vector2(5, 2)
-scale = Vector2(0.445313, 0.445313)
+position = Vector2(2, -1)
+scale = Vector2(1.61133, 1.61133)
 texture = ExtResource("1_vjgaq")
 script = ExtResource("1_yeost")

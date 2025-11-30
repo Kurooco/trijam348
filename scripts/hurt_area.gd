@@ -2,7 +2,7 @@ extends Area2D
 class_name HurtArea
 
 @export var health_component : Node
-@export var hurt_only_on_pass = false
+@export var always_hurt_on_pass = false
 
 signal invicibility_ended
 signal hurt(amount)
@@ -18,7 +18,7 @@ func hit(amount: float):
 		hurt.emit(amount)
 		health_component.change_health(-amount)
 		if($InvincibleTimer.wait_time > 0):
-			invincible = true
+			invincible = !always_hurt_on_pass
 			$InvincibleTimer.start()
 
 func _on_invincible_timer_timeout():

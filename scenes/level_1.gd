@@ -29,3 +29,9 @@ func new_trees(ps):
 	s.spawn_trees()
 	s.trees_removed.connect(new_trees.bind(s))
 	await s.trees_spawned
+
+
+func _on_enemy_timer_timeout():
+	var s_list = get_tree().get_nodes_in_group("enemy_spawner")
+	var s = s_list.pick_random()
+	s.spawn()

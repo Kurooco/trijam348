@@ -1,15 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://bx4o43qth1rfd"]
+[gd_scene load_steps=9 format=3 uid="uid://bx4o43qth1rfd"]
 
-[ext_resource type="Texture2D" uid="uid://cyff6a50y5yhy" path="res://icon.svg" id="1_52nqi"]
 [ext_resource type="Script" uid="uid://bh4tysvfqg84l" path="res://scripts/fire.gd" id="1_xqmqg"]
+[ext_resource type="Texture2D" uid="uid://5t73qqxnw3iu" path="res://art/fireball.png" id="2_txieb"]
 [ext_resource type="PackedScene" uid="uid://7tkupanahbib" path="res://scenes/weapon_area.tscn" id="3_g5mbl"]
 [ext_resource type="PackedScene" uid="uid://mjqwrsmls811" path="res://scenes/health_component.tscn" id="4_rach5"]
+[ext_resource type="StyleBox" uid="uid://csolunvfjfif0" path="res://art/back.tres" id="4_txieb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqmqg"]
 size = Vector2(41, 41)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rach5"]
 size = Vector2(42, 41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4l61p"]
+bg_color = Color(0.867934, 0, 0.114928, 1)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["fire"]]
 collision_layer = 0
@@ -20,9 +24,9 @@ position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_xqmqg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.999996, 3.8147e-06)
-scale = Vector2(0.367188, 0.367188)
-texture = ExtResource("1_52nqi")
+position = Vector2(3, -0.999996)
+scale = Vector2(1.34359, 1.34359)
+texture = ExtResource("2_txieb")
 
 [node name="WeaponArea" parent="." instance=ExtResource("3_g5mbl")]
 collision_mask = 6
@@ -35,11 +39,19 @@ shape = SubResource("RectangleShape2D_rach5")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 65.0
+offset_left = 97.0
 offset_top = 589.0
-offset_right = 352.0
+offset_right = 384.0
 offset_bottom = 616.0
+theme_override_styles/background = ExtResource("4_txieb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4l61p")
+value = 50.0
 show_percentage = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(63, 600)
+scale = Vector2(0.911797, 0.911797)
+texture = ExtResource("2_txieb")
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_rach5")]
 drain = 5.0

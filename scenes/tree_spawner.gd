@@ -5,7 +5,7 @@ signal trees_spawned
 signal trees_removed
 
 func spawn_trees():
-	for i in range(randi_range(3, 10)):
+	for i in range(randi_range(3, 5)):
 		var tree : Node = load("res://scenes/tree_2.tscn").instantiate()
 		$Point.progress_ratio = randf()
 		tree.global_position = $Point.global_position
